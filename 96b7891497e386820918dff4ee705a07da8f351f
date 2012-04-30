@@ -1,0 +1,8 @@
+Change-Id: I96b7891497e386820918dff4ee705a07da8f351f
+Code-Review+2: Roman Birg <romanbirg@gmail.com>
+Verified+1: Roman Birg <romanbirg@gmail.com>
+Submitted-by: Roman Birg <romanbirg@gmail.com>
+Submitted-at: Mon, 30 Apr 2012 17:46:58 -0500
+Reviewed-on: http://gerrit.sudoservers.com/311
+Project: AOKP/packages_providers_ContactsProvider
+Branch: refs/heads/ics
