@@ -1708,7 +1708,8 @@ public class ContactAggregator {
                         + DataColumns.CONCRETE_ID + ","
                         + DataColumns.CONCRETE_MIMETYPE_ID + ","
                         + Data.IS_SUPER_PRIMARY + ","
-                        + Photo.PHOTO_FILE_ID +
+                        + Photo.PHOTO_FILE_ID + ","
+                        + RawContacts.CUSTOM_VIBRATION +
                 " FROM " + Tables.RAW_CONTACTS +
                 " JOIN " + Tables.ACCOUNTS + " ON ("
                     + AccountsColumns.CONCRETE_ID + "=" + RawContactsColumns.CONCRETE_ACCOUNT_ID
@@ -1744,6 +1745,7 @@ public class ContactAggregator {
         int MIMETYPE_ID = 14;
         int IS_SUPER_PRIMARY = 15;
         int PHOTO_FILE_ID = 16;
+        int CUSTOM_VIBRATION = 17;
     }
 
     private interface ContactReplaceSqlStatement {
@@ -1759,7 +1761,8 @@ public class ContactAggregator {
                         + Contacts.TIMES_CONTACTED + "=?, "
                         + Contacts.STARRED + "=?, "
                         + Contacts.HAS_PHONE_NUMBER + "=?, "
-                        + Contacts.LOOKUP_KEY + "=? " +
+                        + Contacts.LOOKUP_KEY + "=?, "
+                        + Contacts.CUSTOM_VIBRATION + "=? " +
                 " WHERE " + Contacts._ID + "=?";
 
         String INSERT_SQL =
@@ -1773,8 +1776,9 @@ public class ContactAggregator {
                         + Contacts.TIMES_CONTACTED + ", "
                         + Contacts.STARRED + ", "
                         + Contacts.HAS_PHONE_NUMBER + ", "
-                        + Contacts.LOOKUP_KEY + ") " +
-                " VALUES (?,?,?,?,?,?,?,?,?,?)";
+                        + Contacts.LOOKUP_KEY + ", "
+                        + Contacts.CUSTOM_VIBRATION + ") " +
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         int NAME_RAW_CONTACT_ID = 1;
         int PHOTO_ID = 2;
@@ -1786,7 +1790,8 @@ public class ContactAggregator {
         int STARRED = 8;
         int HAS_PHONE_NUMBER = 9;
         int LOOKUP_KEY = 10;
-        int CONTACT_ID = 11;
+        int CUSTOM_VIBRATION = 11;
+        int CONTACT_ID = 12;
     }
 
     /**
@@ -1822,6 +1827,7 @@ public class ContactAggregator {
         int totalRowCount = 0;
         int contactSendToVoicemail = 0;
         String contactCustomRingtone = null;
+        String contactCustomVibration = null;
         long contactLastTimeContacted = 0;
         int contactTimesContacted = 0;
         int contactStarred = 0;
@@ -1865,6 +1871,11 @@ public class ContactAggregator {
                     if (contactCustomRingtone == null
                             && !c.isNull(RawContactsQuery.CUSTOM_RINGTONE)) {
                         contactCustomRingtone = c.getString(RawContactsQuery.CUSTOM_RINGTONE);
+                    }
+
+                    if (contactCustomVibration == null
+                            && !c.isNull(RawContactsQuery.CUSTOM_VIBRATION)) {
+                        contactCustomVibration = c.getString(RawContactsQuery.CUSTOM_VIBRATION);
                     }
 
                     long lastTimeContacted = c.getLong(RawContactsQuery.LAST_TIME_CONTACTED);
@@ -1940,6 +1951,8 @@ public class ContactAggregator {
                 totalRowCount == contactSendToVoicemail ? 1 : 0);
         DatabaseUtils.bindObjectToProgram(statement, ContactReplaceSqlStatement.CUSTOM_RINGTONE,
                 contactCustomRingtone);
+        DatabaseUtils.bindObjectToProgram(statement, ContactReplaceSqlStatement.CUSTOM_VIBRATION,
+                contactCustomVibration);
         statement.bindLong(ContactReplaceSqlStatement.LAST_TIME_CONTACTED,
                 contactLastTimeContacted);
         statement.bindLong(ContactReplaceSqlStatement.TIMES_CONTACTED,
