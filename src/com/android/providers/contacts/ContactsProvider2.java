@@ -549,6 +549,7 @@ public class ContactsProvider2 extends AbstractContactsProvider
 
     private static final ProjectionMap sContactsColumns = ProjectionMap.builder()
             .add(Contacts.CUSTOM_RINGTONE)
+            .add(Contacts.CUSTOM_VIBRATION)
             .add(Contacts.DISPLAY_NAME)
             .add(Contacts.DISPLAY_NAME_ALTERNATIVE)
             .add(Contacts.DISPLAY_NAME_SOURCE)
@@ -754,6 +755,7 @@ public class ContactsProvider2 extends AbstractContactsProvider
             .add(RawContacts.TIMES_CONTACTED)
             .add(RawContacts.LAST_TIME_CONTACTED)
             .add(RawContacts.CUSTOM_RINGTONE)
+            .add(RawContacts.CUSTOM_VIBRATION)
             .add(RawContacts.SEND_TO_VOICEMAIL)
             .add(RawContacts.STARRED)
             .add(RawContacts.AGGREGATION_MODE)
@@ -850,6 +852,7 @@ public class ContactsProvider2 extends AbstractContactsProvider
             .add(PhoneLookup.PHOTO_URI, "contacts_view." + Contacts.PHOTO_URI)
             .add(PhoneLookup.PHOTO_THUMBNAIL_URI, "contacts_view." + Contacts.PHOTO_THUMBNAIL_URI)
             .add(PhoneLookup.CUSTOM_RINGTONE, "contacts_view." + Contacts.CUSTOM_RINGTONE)
+            .add(PhoneLookup.CUSTOM_VIBRATION, "contacts_view." + Contacts.CUSTOM_VIBRATION)
             .add(PhoneLookup.HAS_PHONE_NUMBER, "contacts_view." + Contacts.HAS_PHONE_NUMBER)
             .add(PhoneLookup.SEND_TO_VOICEMAIL, "contacts_view." + Contacts.SEND_TO_VOICEMAIL)
             .add(PhoneLookup.NUMBER, Phone.NUMBER)
@@ -4368,6 +4371,8 @@ public class ContactsProvider2 extends AbstractContactsProvider
         mValues.clear();
         ContactsDatabaseHelper.copyStringValue(mValues, RawContacts.CUSTOM_RINGTONE,
                 values, Contacts.CUSTOM_RINGTONE);
+        ContactsDatabaseHelper.copyStringValue(mValues, RawContacts.CUSTOM_VIBRATION,
+                values, Contacts.CUSTOM_VIBRATION);
         ContactsDatabaseHelper.copyLongValue(mValues, RawContacts.SEND_TO_VOICEMAIL,
                 values, Contacts.SEND_TO_VOICEMAIL);
         ContactsDatabaseHelper.copyLongValue(mValues, RawContacts.LAST_TIME_CONTACTED,
@@ -4411,6 +4416,8 @@ public class ContactsProvider2 extends AbstractContactsProvider
         mValues.clear();
         ContactsDatabaseHelper.copyStringValue(mValues, RawContacts.CUSTOM_RINGTONE,
                 values, Contacts.CUSTOM_RINGTONE);
+        ContactsDatabaseHelper.copyStringValue(mValues, RawContacts.CUSTOM_VIBRATION,
+                values, Contacts.CUSTOM_VIBRATION);
         ContactsDatabaseHelper.copyLongValue(mValues, RawContacts.SEND_TO_VOICEMAIL,
                 values, Contacts.SEND_TO_VOICEMAIL);
         ContactsDatabaseHelper.copyLongValue(mValues, RawContacts.LAST_TIME_CONTACTED,
