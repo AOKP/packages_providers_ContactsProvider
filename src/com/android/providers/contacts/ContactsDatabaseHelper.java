@@ -108,7 +108,7 @@ public class ContactsDatabaseHelper extends SQLiteOpenHelper {
      *   700-799 Jelly Bean
      * </pre>
      */
-    static final int DATABASE_VERSION = 705;
+    static final int DATABASE_VERSION = 706;
 
     private static final String DATABASE_NAME = "contacts2.db";
     private static final String DATABASE_PRESENCE = "presence_db";
@@ -2392,10 +2392,13 @@ public class ContactsDatabaseHelper extends SQLiteOpenHelper {
             // if the locale has changed after sync, the index contains gets stale.
             // To correct the issue we have to rebuild the index here.
             upgradeSearchIndex = true;
-            // *** Also add AOKP Custom Vibrations ***
-            upgradeToVersion705(db);
-            upgradeViewsAndTriggers = true;
             oldVersion = 705;
+        }
+
+        if (oldVersion < 706) {
+            upgradeToVersion706(db);
+            upgradeViewsAndTriggers = true;
+            oldVersion = 706;
         }
 
         if (upgradeViewsAndTriggers) {
@@ -3797,7 +3800,7 @@ public class ContactsDatabaseHelper extends SQLiteOpenHelper {
     /**
      * AOKP - add custom vibration columns
      */
-    private void upgradeToVersion705(SQLiteDatabase db) {
+    private void upgradeToVersion706(SQLiteDatabase db) {
         db.execSQL("ALTER TABLE contacts ADD custom_vibration TEXT DEFAULT NULL;");
         db.execSQL("ALTER TABLE raw_contacts ADD custom_vibration TEXT DEFAULT NULL;");
         
