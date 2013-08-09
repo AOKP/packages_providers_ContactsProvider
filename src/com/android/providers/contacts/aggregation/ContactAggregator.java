@@ -1763,7 +1763,7 @@ public class ContactAggregator {
                         + Contacts.STARRED + "=?, "
                         + Contacts.HAS_PHONE_NUMBER + "=?, "
                         + Contacts.LOOKUP_KEY + "=?, "
-                        + Contacts.CUSTOM_VIBRATION + "=? " +
+                        + Contacts.CUSTOM_VIBRATION + "=? "
                         + Contacts.CONTACT_LAST_UPDATED_TIMESTAMP + "=? " +
                 " WHERE " + Contacts._ID + "=?";
 
@@ -1779,7 +1779,7 @@ public class ContactAggregator {
                         + Contacts.STARRED + ", "
                         + Contacts.HAS_PHONE_NUMBER + ", "
                         + Contacts.LOOKUP_KEY + ", "
-                        + Contacts.CUSTOM_VIBRATION + ") " +
+                        + Contacts.CUSTOM_VIBRATION + ") "
                         + Contacts.CONTACT_LAST_UPDATED_TIMESTAMP
                         + ") " +
                 " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -1794,9 +1794,9 @@ public class ContactAggregator {
         int STARRED = 8;
         int HAS_PHONE_NUMBER = 9;
         int LOOKUP_KEY = 10;
-        int CUSTOM_VIBRATION = 11;
-        int CONTACT_LAST_UPDATED_TIMESTAMP = 12;
+        int CONTACT_LAST_UPDATED_TIMESTAMP = 11;
         int CONTACT_ID = 12;
+        int CUSTOM_VIBRATION = 13;
     }
 
     /**

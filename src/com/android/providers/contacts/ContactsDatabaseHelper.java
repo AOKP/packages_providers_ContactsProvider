@@ -3965,6 +3965,7 @@ public class ContactsDatabaseHelper extends SQLiteOpenHelper {
                 "UPDATE " + Tables.RAW_CONTACTS +
                 "   SET " + RawContacts.CUSTOM_VIBRATION + "=NULL" +
                 " WHERE " + RawContacts._ID + " NOT NULL");
+    }
 
     private void upgradeToVersion707(SQLiteDatabase db) {
         db.execSQL("ALTER TABLE " + Tables.RAW_CONTACTS
