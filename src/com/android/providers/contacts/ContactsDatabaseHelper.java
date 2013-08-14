@@ -974,6 +974,7 @@ public class ContactsDatabaseHelper extends SQLiteOpenHelper {
                 Contacts.HAS_PHONE_NUMBER + " INTEGER NOT NULL DEFAULT 0," +
                 Contacts.LOOKUP_KEY + " TEXT," +
                 ContactsColumns.LAST_STATUS_UPDATE_ID + " INTEGER REFERENCES data(_id)," +
+                Contacts.CUSTOM_VIBRATION + " TEXT," +
                 Contacts.CONTACT_LAST_UPDATED_TIMESTAMP + " INTEGER" +
         ");");
 
